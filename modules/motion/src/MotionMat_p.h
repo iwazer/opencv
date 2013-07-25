@@ -5,6 +5,6 @@
     cv::Mat *_cvMat;
 }
 
-- (cv::Mat)mat;
+- (cv::Mat&)mat;
 
 @end

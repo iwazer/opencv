@@ -30,7 +30,7 @@
     return self;
 }
 
-- (cv::Mat)mat
+- (cv::Mat&)mat
 {
     return *_cvMat;
 }
