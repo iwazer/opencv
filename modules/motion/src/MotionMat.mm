@@ -30,6 +30,15 @@
     return self;
 }
 
+- (void)dealloc
+{
+    if (_cvMat) {
+        delete(_cvMat);
+        _cvMat = NULL;
+    }
+    [super dealloc];
+}
+
 - (cv::Mat&)mat
 {
     return *_cvMat;

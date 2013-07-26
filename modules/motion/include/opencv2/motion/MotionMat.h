@@ -12,6 +12,7 @@
 
 - (id)init;
 - (id)initWithRows:(int)rows cols:(int)cols channels:(int)channels;
+- (void)dealloc;
 
 - (unsigned char *)data;
 - (size_t)stepWithIndex:(int)index;
