@@ -83,4 +83,29 @@
     [self cvtColorInput:src output:dst code:code dcn:0];
 }
 
++ (void)threshold:(MotionMat *)src dst:(MotionMat *)dst thresh:(double)thresh maxVal:(double)maxVal thresholdType:(int)thresholdType
+{
+    cv::threshold([src mat], [dst mat], 0, 255, thresholdType);
+}
+
++ (void)adaptiveThreshold:(MotionMat *)src dst:(MotionMat *)dst maxValue:(double)maxValue adaptiveMethod:(int)adaptiveMethod thresholdType:(int)thresholdType blockSize:(int)blockSize C:(double)c
+{
+    cv::adaptiveThreshold([src mat], [dst mat], maxValue, adaptiveMethod, thresholdType, blockSize, c);
+}
+
++ (void)GaussianBlur:(MotionMat *)src dst:(MotionMat *)dst sizeWidth:(int)width sizeHeight:(int)height sigmaX:(double)sigmaX sigmaY:(double)sigmaY borderType:(int)borderType
+{
+    // TODO: cv::Size is template class, but fixed with int
+    cv::GaussianBlur([src mat], [dst mat], cv::Size(width, height), sigmaX, sigmaY, borderType);
+}
++ (void)GaussianBlur:(MotionMat *)src dst:(MotionMat *)dst sizeWidth:(int)width sizeHeight:(int)height sigmaX:(double)sigmaX sigmaY:(double)sigmaY
+{
+    [self GaussianBlur:src dst:dst sizeWidth:width sizeHeight:height sigmaX:sigmaX sigmaY:sigmaY borderType:cv::BORDER_DEFAULT];
+}
++ (void)GaussianBlur:(MotionMat *)src dst:(MotionMat *)dst sizeWidth:(int)width sizeHeight:(int)height sigmaX:(double)sigmaX
+{
+    [self GaussianBlur:src dst:dst sizeWidth:width sizeHeight:height sigmaX:sigmaX sigmaY:0];
+}
+
+
 @end
