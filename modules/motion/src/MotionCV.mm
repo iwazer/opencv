@@ -19,9 +19,9 @@
     CGColorSpaceRef colorSpace = CGImageGetColorSpace(image.CGImage);
     CGFloat cols = image.size.width;
     CGFloat rows = image.size.height;
-
+    
     MotionMat *mat = [[MotionMat alloc] initWithRows:rows cols:cols channels:CV_8UC4];
-
+    
     CGContextRef contextRef = CGBitmapContextCreate([mat data],                 // Pointer to  data
                                                     cols,                       // Width of bitmap
                                                     rows,                       // Height of bitmap
@@ -30,11 +30,11 @@
                                                     colorSpace,                 // Colorspace
                                                     kCGImageAlphaNoneSkipLast |
                                                     kCGBitmapByteOrderDefault); // Bitmap info flags
-
+    
     CGContextDrawImage(contextRef, CGRectMake(0, 0, cols, rows), image.CGImage);
     CGContextRelease(contextRef);
     CGColorSpaceRelease(colorSpace);
-
+    
     return mat;
 }
 
@@ -42,15 +42,15 @@
 {
     NSData *data = [NSData dataWithBytes:[mat data] length:[mat elemSize]*[mat total]];
     CGColorSpaceRef colorSpace;
-
+    
     if ([mat elemSize] == 1) {
         colorSpace = CGColorSpaceCreateDeviceGray();
     } else {
         colorSpace = CGColorSpaceCreateDeviceRGB();
     }
-
+    
     CGDataProviderRef provider = CGDataProviderCreateWithCFData((CFDataRef)data);
-
+    
     // Creating CGImage from cv::Mat
     CGImageRef imageRef = CGImageCreate([mat cols],                                 //width
                                         [mat rows],                                 //height
@@ -64,13 +64,13 @@
                                         false,                                      //should interpolate
                                         kCGRenderingIntentDefault                   //intent
                                         );
-
+    
     // Getting UIImage from CGImage
     UIImage *finalImage = [UIImage imageWithCGImage:imageRef];
     CGImageRelease(imageRef);
     CGDataProviderRelease(provider);
     CGColorSpaceRelease(colorSpace);
-
+    
     return finalImage;
 }
 

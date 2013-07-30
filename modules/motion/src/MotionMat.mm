@@ -14,11 +14,11 @@
 
 - (id)init
 {
-  self = [super init];
-  if (self) {
-    _cvMat = new cv::Mat();
-  }
-  return self;
+    self = [super init];
+    if (self) {
+        _cvMat = new cv::Mat();
+    }
+    return self;
 }
 
 - (id)initWithRows:(int)rows cols:(int)cols channels:(int)channels
@@ -50,7 +50,7 @@
 
 - (BOOL)empty
 {
-  return _cvMat->empty();
+    return _cvMat->empty();
 }
 - (size_t)total
 {
