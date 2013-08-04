@@ -74,13 +74,14 @@
     return finalImage;
 }
 
-+ (void)cvtColorInput:(MotionMat *)src output:(MotionMat *)dst  code:(int)code dcn:(int)dcn
+
++ (void)cvtColor:(MotionMat *)src dst:(MotionMat *)dst  code:(int)code dcn:(int)dcn
 {
     cv::cvtColor([src mat], [dst mat], code, dcn);
 }
-+ (void)cvtColorInput:(MotionMat *)src output:(MotionMat *)dst  code:(int)code
++ (void)cvtColor:(MotionMat *)src dst:(MotionMat *)dst  code:(int)code
 {
-    [self cvtColorInput:src output:dst code:code dcn:0];
+    [self cvtColor:src dst:dst code:code dcn:0];
 }
 
 + (void)threshold:(MotionMat *)src dst:(MotionMat *)dst thresh:(double)thresh maxVal:(double)maxVal thresholdType:(int)thresholdType
