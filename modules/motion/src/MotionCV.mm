@@ -98,18 +98,18 @@
     cv::adaptiveThreshold([src mat], [dst mat], maxValue, adaptiveMethod, thresholdType, blockSize, c);
 }
 
-+ (void)GaussianBlur:(MotionMat *)src dst:(MotionMat *)dst sizeWidth:(int)width sizeHeight:(int)height sigmaX:(double)sigmaX sigmaY:(double)sigmaY borderType:(int)borderType
++ (void)GaussianBlur:(MotionMat *)src dst:(MotionMat *)dst size:(MotionIntSize)size sigmaX:(double)sigmaX sigmaY:(double)sigmaY borderType:(int)borderType
 {
     // TODO: cv::Size is template class, but fixed with int
-    cv::GaussianBlur([src mat], [dst mat], cv::Size(width, height), sigmaX, sigmaY, borderType);
+    cv::GaussianBlur([src mat], [dst mat], cv::Size(size.width, size.height), sigmaX, sigmaY, borderType);
 }
-+ (void)GaussianBlur:(MotionMat *)src dst:(MotionMat *)dst sizeWidth:(int)width sizeHeight:(int)height sigmaX:(double)sigmaX sigmaY:(double)sigmaY
++ (void)GaussianBlur:(MotionMat *)src dst:(MotionMat *)dst size:(MotionIntSize)size sigmaX:(double)sigmaX sigmaY:(double)sigmaY
 {
-    [self GaussianBlur:src dst:dst sizeWidth:width sizeHeight:height sigmaX:sigmaX sigmaY:sigmaY borderType:cv::BORDER_DEFAULT];
+    [self GaussianBlur:src dst:dst size:size sigmaX:sigmaX sigmaY:sigmaY borderType:cv::BORDER_DEFAULT];
 }
-+ (void)GaussianBlur:(MotionMat *)src dst:(MotionMat *)dst sizeWidth:(int)width sizeHeight:(int)height sigmaX:(double)sigmaX
++ (void)GaussianBlur:(MotionMat *)src dst:(MotionMat *)dst size:(MotionIntSize)size sigmaX:(double)sigmaX
 {
-    [self GaussianBlur:src dst:dst sizeWidth:width sizeHeight:height sigmaX:sigmaX sigmaY:0];
+    [self GaussianBlur:src dst:dst size:size sigmaX:sigmaX sigmaY:0];
 }
 
 

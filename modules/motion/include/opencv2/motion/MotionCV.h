@@ -35,8 +35,9 @@ typedef struct MotionIntPoint {
 + (void)threshold:(MotionMat *)src dst:(MotionMat *)dst thresh:(double)thresh maxVal:(double)maxVal thresholdType:(int)thresholdType;
 
 + (void)adaptiveThreshold:(MotionMat *)src dst:(MotionMat *)dst maxValue:(double)maxValue adaptiveMethod:(int)adaptiveMethod thresholdType:(int)thresholdType blockSize:(int)blockSize C:(double)c;
-+ (void)GaussianBlur:(MotionMat *)src dst:(MotionMat *)dst sizeWidth:(int)width sizeHeight:(int)height sigmaX:(double)sigmaX sigmaY:(double)sigmaY borderType:(int)borderType;
-+ (void)GaussianBlur:(MotionMat *)src dst:(MotionMat *)dst sizeWidth:(int)width sizeHeight:(int)height sigmaX:(double)sigmaX sigmaY:(double)sigmaY;
-+ (void)GaussianBlur:(MotionMat *)src dst:(MotionMat *)dst sizeWidth:(int)width sizeHeight:(int)height sigmaX:(double)sigmaX;
+
++ (void)GaussianBlur:(MotionMat *)src dst:(MotionMat *)dst size:(MotionIntSize)size sigmaX:(double)sigmaX sigmaY:(double)sigmaY borderType:(int)borderType;
++ (void)GaussianBlur:(MotionMat *)src dst:(MotionMat *)dst size:(MotionIntSize)size sigmaX:(double)sigmaX sigmaY:(double)sigmaY;
++ (void)GaussianBlur:(MotionMat *)src dst:(MotionMat *)dst size:(MotionIntSize)size sigmaX:(double)sigmaX;
 
 @end
