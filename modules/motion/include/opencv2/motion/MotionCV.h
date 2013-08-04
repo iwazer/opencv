@@ -11,11 +11,23 @@
 
 #import "MotionMat.h"
 
+// cv:: Size is not available. Because, there is not a C++ template in Objective-C.
+typedef struct GCSize {
+    int width;
+    int height;
+} MotionIntSize;
+
+typedef struct MotionIntPoint {
+    int x;
+    int y;
+} MotionIntPoint;
+
 @interface MotionCV : NSObject
 
 + (MotionMat *)MotionMatFromUIImage:(UIImage *)image;
 + (UIImage *)UIImageFromMotionMat:(MotionMat *)mat;
 
++ (void)blur:(MotionMat *)src dst:(MotionMat *)dst size:(MotionIntSize)size anchor:(MotionIntPoint)ancho borderType:(int) borderType;
 
 + (void)cvtColor:(MotionMat *)src dst:(MotionMat *)dst  code:(int)code dcn:(int)dcn;
 + (void)cvtColor:(MotionMat *)src dst:(MotionMat *)dst  code:(int)code;

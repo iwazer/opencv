@@ -74,6 +74,10 @@
     return finalImage;
 }
 
++ (void)blur:(MotionMat *)src dst:(MotionMat *)dst size:(MotionIntSize)size anchor:(MotionIntPoint)ancho borderType:(int) borderType
+{
+    cv::blur([src mat], [dst mat], cv::Size(size.width, size.height), cv::Point(-1, -1), cv::BORDER_DEFAULT);
+}
 
 + (void)cvtColor:(MotionMat *)src dst:(MotionMat *)dst  code:(int)code dcn:(int)dcn
 {
