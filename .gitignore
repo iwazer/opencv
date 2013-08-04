@@ -6,5 +6,6 @@ OpenCV4Tegra/
 .sw[a-z]
 .*.swp
 tags
+build/
 gem/framework/
 gem/*.gem
