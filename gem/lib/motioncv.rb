@@ -7,7 +7,13 @@ Motion::Project::App.setup do |app|
   app.files.unshift(Dir.glob(File.join(lib_dir_path, "project/**/*.rb")))
   app.vendor_project(File.join(lib_dir_path, '../framework/opencv2.framework'),
     :static,
-    :headers_dir => 'Headers',
+    :source_files=> [
+                       'Versions/A/Headers/imgproc/imgproc_c.h',
+                       'Versions/A/Headers/imgproc/types_c.h',
+                       'Versions/A/Headers/motion/core_base.h',
+                       'Versions/A/Headers/motion/MotionCV.h',
+                       'Versions/A/Headers/motion/MotionMat.h'
+                    ],
     :products    => ['opencv2'],
     :force_load  => false
   )
