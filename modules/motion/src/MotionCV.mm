@@ -81,6 +81,7 @@
     IplImage *edgeImage = cvCreateImage(cvGetSize(srcImage), IPL_DEPTH_8U, 1);
     cvCanny(srcImage, edgeImage, threshold1, threshold2, aperture_size);
     [dst setIplImage:edgeImage];
+    cvReleaseImageHeader(&edgeImage);
 }
 
 + (void)not:(MotionMat *)src dst:(MotionMat *)dst
@@ -90,6 +91,7 @@
     IplImage *outImage = cvCreateImage(cvGetSize(srcImage), srcImage->depth, srcImage->nChannels);
     cvNot(srcImage, outImage);
     [dst setIplImage:outImage];
+    cvReleaseImageHeader(&outImage);
 }
 
 + (void)blur:(MotionMat *)src dst:(MotionMat *)dst size:(MotionIntSize)size anchor:(MotionIntPoint)ancho borderType:(int) borderType
