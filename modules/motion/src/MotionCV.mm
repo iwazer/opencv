@@ -83,6 +83,15 @@
     [dst setIplImage:edgeImage];
 }
 
++ (void)not:(MotionMat *)src dst:(MotionMat *)dst
+{
+    IplImage ipl = [src mat];
+    IplImage *srcImage = &ipl;
+    IplImage *outImage = cvCreateImage(cvGetSize(srcImage), srcImage->depth, srcImage->nChannels);
+    cvNot(srcImage, outImage);
+    [dst setIplImage:outImage];
+}
+
 + (void)blur:(MotionMat *)src dst:(MotionMat *)dst size:(MotionIntSize)size anchor:(MotionIntPoint)ancho borderType:(int) borderType
 {
     cv::blur([src mat], [dst mat], cv::Size(size.width, size.height), cv::Point(-1, -1), cv::BORDER_DEFAULT);
