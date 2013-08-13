@@ -27,6 +27,7 @@ typedef struct MotionIntPoint {
 + (MotionMat *)MotionMatFromUIImage:(UIImage *)image;
 + (UIImage *)UIImageFromMotionMat:(MotionMat *)mat;
 
++ (void)canny:(MotionMat *)src dst:(MotionMat *)dst threshold1:(double)threshold1 threshold2:(double)threshold2 size:(int)aperture_size;
 + (void)blur:(MotionMat *)src dst:(MotionMat *)dst size:(MotionIntSize)size anchor:(MotionIntPoint)ancho borderType:(int) borderType;
 
 + (void)cvtColor:(MotionMat *)src dst:(MotionMat *)dst  code:(int)code dcn:(int)dcn;

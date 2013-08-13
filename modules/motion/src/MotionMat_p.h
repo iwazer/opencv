@@ -6,5 +6,6 @@
 }
 
 - (cv::Mat&)mat;
+- (void)setMat:(cv::Mat)mat;
 
 @end

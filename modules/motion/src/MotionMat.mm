@@ -30,6 +30,14 @@
     return self;
 }
 
+- (void)setMat:(cv::Mat)mat
+{
+    if (_cvMat) {
+        delete(_cvMat);
+    }
+    _cvMat = new cv::Mat(mat);
+}
+
 - (void)dealloc
 {
     if (_cvMat) {

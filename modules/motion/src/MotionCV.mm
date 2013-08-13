@@ -11,6 +11,7 @@
 
 #include "opencv2/core.hpp"
 #include "opencv2/imgproc.hpp"
+#include "opencv2/imgproc/imgproc_c.h"
 
 @implementation MotionCV
 
@@ -72,6 +73,17 @@
     CGColorSpaceRelease(colorSpace);
     
     return finalImage;
+}
+
++ (void)canny:(MotionMat *)src dst:(MotionMat *)dst threshold1:(double)threshold1 threshold2:(double)threshold2 size:(int)aperture_size
+{
+    IplImage ipl = [src mat];
+    IplImage *srcImage = &ipl;
+    IplImage *edgeImage = cvCreateImage(cvGetSize(srcImage), IPL_DEPTH_8U, 1);
+    cvCanny(srcImage, edgeImage, threshold1, threshold2, aperture_size);
+
+    cv::Mat mat = cv::cvarrToMat(edgeImage);
+    [dst setMat:mat];
 }
 
 + (void)blur:(MotionMat *)src dst:(MotionMat *)dst size:(MotionIntSize)size anchor:(MotionIntPoint)ancho borderType:(int) borderType
