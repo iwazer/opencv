@@ -38,6 +38,12 @@
     _cvMat = new cv::Mat(mat);
 }
 
+- (void)setIplImage:(IplImage*)image
+{
+    cv::Mat mat = cv::cvarrToMat(image);
+    [self setMat:mat];
+}
+
 - (void)dealloc
 {
     if (_cvMat) {

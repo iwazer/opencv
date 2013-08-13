@@ -11,7 +11,6 @@
 
 #include "opencv2/core.hpp"
 #include "opencv2/imgproc.hpp"
-#include "opencv2/imgproc/imgproc_c.h"
 
 @implementation MotionCV
 
@@ -81,9 +80,7 @@
     IplImage *srcImage = &ipl;
     IplImage *edgeImage = cvCreateImage(cvGetSize(srcImage), IPL_DEPTH_8U, 1);
     cvCanny(srcImage, edgeImage, threshold1, threshold2, aperture_size);
-
-    cv::Mat mat = cv::cvarrToMat(edgeImage);
-    [dst setMat:mat];
+    [dst setIplImage:edgeImage];
 }
 
 + (void)blur:(MotionMat *)src dst:(MotionMat *)dst size:(MotionIntSize)size anchor:(MotionIntPoint)ancho borderType:(int) borderType
