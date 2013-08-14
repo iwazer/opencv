@@ -20,3 +20,10 @@ Motion::Project::App.setup do |app|
   app.frameworks += ['AVFoundation','AssetsLibrary']
   app.libs += ['-lc++']
 end
+
+task :clean do
+  bs = File.join(lib_dir_path,
+    '../framework/opencv2.framework', 'opencv2.framework.bridgesupport')
+  puts "    Delete #{bs}"
+  File.delete(bs) if File.exist?(bs)
+end
