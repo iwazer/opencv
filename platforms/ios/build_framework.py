@@ -56,12 +56,8 @@ def build_opencv(srcroot, buildroot, target, arch):
     os.system("xcodebuild ARCHS=%s -sdk %s -configuration Release -target install install" % (arch, target.lower()))
     os.chdir(currdir)
 
-def put_framework_together(srcroot, dstroot):
+def put_framework_together(srcroot, dstroot, targetlist):
     "constructs the framework directory after all the targets are built"
-
-    # find the list of targets (basically, ["iPhoneOS", "iPhoneSimulator"])
-    targetlist = glob.glob(os.path.join(dstroot, "build", "*"))
-    targetlist = [os.path.basename(t) for t in targetlist]
 
     # set the current dir to the dst root
     currdir = os.getcwd()
@@ -106,20 +102,29 @@ def put_framework_together(srcroot, dstroot):
     os.symlink("Versions/Current/opencv2", "opencv2")
 
 
-def build_framework(srcroot, dstroot):
+def build_framework(srcroot, dstroot, target):
     "main function to do all the work"
 
-    targets = ["iPhoneSimulator"]
-    archs = ["i386"]
+    targets = ["iPhoneOS", "iPhoneOS", "iPhoneSimulator"]
+    archs = ["armv7", "armv7s", "i386"]
+    if target == "onlysim":
+        del targets[0:2]
+        del archs[0:2]
     for i in range(len(targets)):
         build_opencv(srcroot, os.path.join(dstroot, "build"), targets[i], archs[i])
 
-    put_framework_together(srcroot, dstroot)
+    put_framework_together(srcroot, dstroot,
+                           map(lambda t: t[0] + '-' + t[1], zip(targets, archs)))
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
+    if len(sys.argv) < 2:
         print "Usage:\n\t./build_framework.py <outputdir>\n\n"
         sys.exit(0)
+    target = "onlysim"
+    if len(sys.argv) > 2:
+        target = sys.argv[2]
 
-    build_framework(os.path.abspath(os.path.join(os.path.dirname(sys.argv[0]), "../..")), os.path.abspath(sys.argv[1]))
+    build_framework(os.path.abspath(os.path.join(os.path.dirname(sys.argv[0]), "../..")),
+                    os.path.abspath(sys.argv[1]),
+                    target)

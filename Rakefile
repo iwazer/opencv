@@ -1,12 +1,12 @@
-desc "Build OpenCV framework & motioncv gem"
+desc "Build OpenCV framework & motioncv gem\n(ex: rake build:framework <target={onlysim|all}>)"
 task :build => [:"build:framework", :"build:gem"]
 desc "Clear OpenCV framework & motioncv gem build objects"
 task :clean => [:"clean:framework", :"clean:gem"]
 
 namespace :build do
-  desc "Build OpenCV framework"
+  desc "Build OpenCV framework (ex: rake build:framework <target={onlysim|all}>)"
   task :framework do
-    sh "python platforms/ios/build_framework.py gem/framework"
+    sh "python platforms/ios/build_framework.py gem/framework #{ENV['target']} | tee gem/framework/build.log"
   end
 
   desc "Build motioncv gem"
