@@ -24,6 +24,6 @@ namespace :clean do
 
   desc "Clear motioncv gem build objects"
   task :gem do
-    sh "rm gem/motioncv-*.gem" unless Dir.glob("gem/motioncv-*.gem").select(&:exists?).empty?
+    sh "rm gem/motioncv-*.gem" unless Dir.glob("gem/motioncv-*.gem").select{|s| File.exists?(s)}.empty?
   end
 end
