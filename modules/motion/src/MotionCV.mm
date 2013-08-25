@@ -74,7 +74,11 @@
     return finalImage;
 }
 
-+ (void)canny:(MotionMat *)src dst:(MotionMat *)dst threshold1:(double)threshold1 threshold2:(double)threshold2 size:(int)aperture_size
++ (void)canny:(MotionMat *)src
+          dst:(MotionMat *)dst
+   threshold1:(double)threshold1
+   threshold2:(double)threshold2
+         size:(int)aperture_size
 {
     IplImage ipl = [src mat];
     IplImage *srcImage = &ipl;
@@ -84,7 +88,8 @@
     cvReleaseImageHeader(&edgeImage);
 }
 
-+ (void)not:(MotionMat *)src dst:(MotionMat *)dst
++ (void)not:(MotionMat *)src
+        dst:(MotionMat *)dst
 {
     IplImage ipl = [src mat];
     IplImage *srcImage = &ipl;
@@ -94,43 +99,75 @@
     cvReleaseImageHeader(&outImage);
 }
 
-+ (void)blur:(MotionMat *)src dst:(MotionMat *)dst size:(MotionIntSize)size anchor:(MotionIntPoint)ancho borderType:(int) borderType
++ (void)blur:(MotionMat *)src
+         dst:(MotionMat *)dst
+        size:(MotionIntSize)size
+      anchor:(MotionIntPoint)ancho
+  borderType:(int)borderType
 {
     cv::blur([src mat], [dst mat], cv::Size(size.width, size.height), cv::Point(-1, -1), cv::BORDER_DEFAULT);
 }
 
-+ (void)cvtColor:(MotionMat *)src dst:(MotionMat *)dst  code:(int)code dcn:(int)dcn
++ (void)cvtColor:(MotionMat *)src
+             dst:(MotionMat *)dst
+            code:(int)code
+             dcn:(int)dcn
 {
     cv::cvtColor([src mat], [dst mat], code, dcn);
 }
-+ (void)cvtColor:(MotionMat *)src dst:(MotionMat *)dst  code:(int)code
+
++ (void)cvtColor:(MotionMat *)src
+             dst:(MotionMat *)dst
+            code:(int)code
 {
     [self cvtColor:src dst:dst code:code dcn:0];
 }
 
-+ (void)threshold:(MotionMat *)src dst:(MotionMat *)dst thresh:(double)thresh maxVal:(double)maxVal thresholdType:(int)thresholdType
++ (void)threshold:(MotionMat *)src
+              dst:(MotionMat *)dst
+           thresh:(double)thresh
+           maxVal:(double)maxVal
+    thresholdType:(int)thresholdType
 {
     cv::threshold([src mat], [dst mat], 0, 255, thresholdType);
 }
 
-+ (void)adaptiveThreshold:(MotionMat *)src dst:(MotionMat *)dst maxValue:(double)maxValue adaptiveMethod:(int)adaptiveMethod thresholdType:(int)thresholdType blockSize:(int)blockSize C:(double)c
++ (void)adaptiveThreshold:(MotionMat *)src
+                      dst:(MotionMat *)dst
+                 maxValue:(double)maxValue
+           adaptiveMethod:(int)adaptiveMethod
+            thresholdType:(int)thresholdType
+                blockSize:(int)blockSize
+                        C:(double)c
 {
     cv::adaptiveThreshold([src mat], [dst mat], maxValue, adaptiveMethod, thresholdType, blockSize, c);
 }
 
-+ (void)GaussianBlur:(MotionMat *)src dst:(MotionMat *)dst size:(MotionIntSize)size sigmaX:(double)sigmaX sigmaY:(double)sigmaY borderType:(int)borderType
++ (void)GaussianBlur:(MotionMat *)src
+                 dst:(MotionMat *)dst
+                size:(MotionIntSize)size
+              sigmaX:(double)sigmaX
+              sigmaY:(double)sigmaY
+          borderType:(int)borderType
 {
-    // TODO: cv::Size is template class, but fixed with int
     cv::GaussianBlur([src mat], [dst mat], cv::Size(size.width, size.height), sigmaX, sigmaY, borderType);
 }
-+ (void)GaussianBlur:(MotionMat *)src dst:(MotionMat *)dst size:(MotionIntSize)size sigmaX:(double)sigmaX sigmaY:(double)sigmaY
+
++ (void)GaussianBlur:(MotionMat *)src
+                 dst:(MotionMat *)dst
+                size:(MotionIntSize)size
+              sigmaX:(double)sigmaX
+              sigmaY:(double)sigmaY
 {
     [self GaussianBlur:src dst:dst size:size sigmaX:sigmaX sigmaY:sigmaY borderType:cv::BORDER_DEFAULT];
 }
-+ (void)GaussianBlur:(MotionMat *)src dst:(MotionMat *)dst size:(MotionIntSize)size sigmaX:(double)sigmaX
+
++ (void)GaussianBlur:(MotionMat *)src
+                 dst:(MotionMat *)dst
+                size:(MotionIntSize)size
+              sigmaX:(double)sigmaX
 {
     [self GaussianBlur:src dst:dst size:size sigmaX:sigmaX sigmaY:0];
 }
-
 
 @end
