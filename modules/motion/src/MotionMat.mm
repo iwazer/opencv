@@ -38,6 +38,11 @@
     _cvMat = new cv::Mat(mat);
 }
 
+- (void)set:(MotionMat *)mm
+{
+    [self setMat:[mm mat]];
+}
+
 - (void)setIplImage:(IplImage*)image
 {
     cv::Mat mat = cv::cvarrToMat(image);
@@ -87,6 +92,16 @@
 - (int)cols
 {
     return _cvMat->cols;
+}
+
+- (MotionIntSize)size
+{
+    cv::InputArray& ia = *_cvMat;
+    MotionIntSize sz = {
+        .width = ia.size().width,
+        .height = ia.size().height
+    };
+    return sz;
 }
 
 @end

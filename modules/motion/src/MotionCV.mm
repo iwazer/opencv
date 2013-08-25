@@ -108,6 +108,82 @@
     cv::blur([src mat], [dst mat], cv::Size(size.width, size.height), cv::Point(-1, -1), cv::BORDER_DEFAULT);
 }
 
+/*
+ * cv::bitwise_xor
+ */
++ (void)bitwise_xor:(MotionMat *)src1
+                src:(MotionMat *)src2
+                dst:(MotionMat *)dst
+               mask:(MotionMat *)mask/* =Mat() */
+{
+    cv::bitwise_xor([src1 mat], [src2 mat], [dst mat], [mask mat]);
+}
+
++ (void)bitwise_xor:(MotionMat *)src1
+                src:(MotionMat *)src2
+                dst:(MotionMat *)dst
+{
+    cv::bitwise_xor([src1 mat], [src2 mat], [dst mat], cv::Mat());
+}
+
+/*
+ * cv::min
+ */
++ (void)min:(MotionMat *)src1
+        src:(MotionMat *)src2
+        dst:(MotionMat *)dst
+{
+    cv::min([src1 mat], [src2 mat], [dst mat]);
+}
+
+/*
+ * cv::subtract
+ */
++ (void)subtract:(MotionMat *)src1
+             src:(MotionMat *)src2
+             dst:(MotionMat *)dst
+{
+    cv::subtract([src1 mat], [src2 mat], [dst mat]);
+}
+
+/*
+ * cv::equalizeHist
+ */
++ (void)equalizeHist:(MotionMat *)src
+                 dst:(MotionMat *)dst
+{
+    cv::equalizeHist([src mat], [dst mat]);
+}
+
+/*
+ * cv::resize
+ */
++ (void)resize:(MotionMat *)src
+           dst:(MotionMat *)dst
+         dsize:(MotionIntSize)dsize
+            fx:(double)fx/* =0 */
+            fy:(double)fy/* =0 */
+ interpolation:(int)interpolation/* =INTER_LINEAR */
+{
+    cv::resize([src mat], [dst mat], cv::Size(dsize.width, dsize.height), fx, fy, interpolation);
+}
+
++ (void)resize:(MotionMat *)src
+           dst:(MotionMat *)dst
+         dsize:(MotionIntSize)dsize
+            fx:(double)fx
+            fy:(double)fy
+{
+    [self resize:src dst:dst dsize:dsize fx:fx fy:fy interpolation:cv::INTER_LINEAR];
+}
+
++ (void)resize:(MotionMat *)src
+           dst:(MotionMat *)dst
+         dsize:(MotionIntSize)dsize
+{
+    [self resize:src dst:dst dsize:dsize fx:0 fy:0];
+}
+
 + (void)cvtColor:(MotionMat *)src
              dst:(MotionMat *)dst
             code:(int)code
@@ -129,7 +205,7 @@
            maxVal:(double)maxVal
     thresholdType:(int)thresholdType
 {
-    cv::threshold([src mat], [dst mat], 0, 255, thresholdType);
+    cv::threshold([src mat], [dst mat], thresh, maxVal, thresholdType);
 }
 
 + (void)adaptiveThreshold:(MotionMat *)src
@@ -168,6 +244,36 @@
               sigmaX:(double)sigmaX
 {
     [self GaussianBlur:src dst:dst size:size sigmaX:sigmaX sigmaY:0];
+}
+
+/*
+ * cv::Canny
+ */
++ (void) Canny:(MotionMat *)src
+           dst:(MotionMat *)dst
+    threshold1:(double)threshold1
+    threshold2:(double)threshold2
+  apertureSize:(int)apertureSize/* =3 */
+    l2gradient:(BOOL)l2gradient/* =false */
+{
+    cv::Canny([src mat], [dst mat], threshold1, threshold2, apertureSize, l2gradient);
+}
+
++ (void) Canny:(MotionMat *)src
+           dst:(MotionMat *)dst
+    threshold1:(double)threshold1
+    threshold2:(double)threshold2
+  apertureSize:(int)apertureSize
+{
+    [self Canny:src dst:dst threshold1:threshold1 threshold2:threshold2 apertureSize:apertureSize l2gradient:false];
+}
+
++ (void) Canny:(MotionMat *)src
+           dst:(MotionMat *)dst
+    threshold1:(double)threshold1
+    threshold2:(double)threshold2
+{
+    [self Canny:src dst:dst threshold1:threshold1 threshold2:threshold2 apertureSize:3];
 }
 
 @end

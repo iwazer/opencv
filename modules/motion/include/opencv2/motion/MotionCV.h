@@ -11,17 +11,6 @@
 
 #import "MotionMat.h"
 
-// cv:: Size is not available. Because, there is not a C++ template in Objective-C.
-typedef struct MotionIntSize {
-    int width;
-    int height;
-} MotionIntSize;
-
-typedef struct MotionIntPoint {
-    int x;
-    int y;
-} MotionIntPoint;
-
 @interface MotionCV : NSObject
 
 /*
@@ -49,7 +38,59 @@ typedef struct MotionIntPoint {
   borderType:(int)borderType;
 
 /*
- * cvtColor
+ * cv::bitwise_xor
+ */
++ (void)bitwise_xor:(MotionMat *)src1
+                src:(MotionMat *)src2
+                dst:(MotionMat *)dst
+               mask:(MotionMat *)mask/* =Mat() */;
+
++ (void)bitwise_xor:(MotionMat *)src1
+                src:(MotionMat *)src2
+                dst:(MotionMat *)dst;
+
+/*
+ * cv::min
+ */
++ (void)min:(MotionMat *)src1
+        src:(MotionMat *)src2
+        dst:(MotionMat *)dst;
+
+/*
+ * cv::subtract
+ */
++ (void)subtract:(MotionMat *)src1
+             src:(MotionMat *)src2
+             dst:(MotionMat *)dst;
+
+/*
+ * cv::equalizeHist
+ */
++ (void)equalizeHist:(MotionMat *)src
+                 dst:(MotionMat *)dst;
+
+/*
+ * cv::resize
+ */
++ (void)resize:(MotionMat *)src
+           dst:(MotionMat *)dst
+         dsize:(MotionIntSize)dsize
+            fx:(double)fx/* =0 */
+            fy:(double)fy/* =0 */
+ interpolation:(int)interpolation/* =INTER_LINEAR */;
+
++ (void)resize:(MotionMat *)src
+           dst:(MotionMat *)dst
+         dsize:(MotionIntSize)dsize
+            fx:(double)fx
+            fy:(double)fy;
+
++ (void)resize:(MotionMat *)src
+           dst:(MotionMat *)dst
+         dsize:(MotionIntSize)dsize;
+
+/*
+ * cv::cvtColor
  */
 + (void)cvtColor:(MotionMat *)src
              dst:(MotionMat *)dst
@@ -61,7 +102,7 @@ typedef struct MotionIntPoint {
             code:(int)code;
 
 /*
- * threshold
+ * cv::threshold
  */
 + (void)threshold:(MotionMat *)src
               dst:(MotionMat *)dst
@@ -70,7 +111,7 @@ typedef struct MotionIntPoint {
     thresholdType:(int)thresholdType;
 
 /*
- * adaptiveThreshold
+ * cv::adaptiveThreshold
  */
 + (void)adaptiveThreshold:(MotionMat *)src
                       dst:(MotionMat *)dst
@@ -81,7 +122,7 @@ typedef struct MotionIntPoint {
                         C:(double)c;
 
 /*
- * GaussianBlur
+ * cv::GaussianBlur
  */
 + (void)GaussianBlur:(MotionMat *)src
                  dst:(MotionMat *)dst
@@ -99,5 +140,26 @@ typedef struct MotionIntPoint {
                  dst:(MotionMat *)dst
                 size:(MotionIntSize)size
               sigmaX:(double)sigmaX;
+
+/*
+ * cv::Canny
+ */
++ (void) Canny:(MotionMat *)src
+           dst:(MotionMat *)dst
+    threshold1:(double)threshold1
+    threshold2:(double)threshold2
+  apertureSize:(int)apertureSize/* =3 */
+    l2gradient:(BOOL)l2gradient/* =false */;
+
++ (void) Canny:(MotionMat *)src
+           dst:(MotionMat *)dst
+    threshold1:(double)threshold1
+    threshold2:(double)threshold2
+  apertureSize:(int)apertureSize;
+
++ (void) Canny:(MotionMat *)src
+           dst:(MotionMat *)dst
+    threshold1:(double)threshold1
+    threshold2:(double)threshold2;
 
 @end
