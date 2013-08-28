@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 // cv:: Size is not available. Because, there is not a C++ template in Objective-C.
 typedef struct MotionIntSize {
@@ -35,5 +36,7 @@ typedef struct MotionIntPoint {
 - (int)rows;
 - (int)cols;
 - (MotionIntSize)size;
+
+- (MotionMat *)crop:(CGRect)rect;
 
 @end

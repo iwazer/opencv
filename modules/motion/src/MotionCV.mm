@@ -109,6 +109,61 @@
 }
 
 /*
+ * cv::{h|v}concat
+ */
++ (void)hconcat:(MotionMat *)src1
+            src:(MotionMat *)src2
+            dst:(MotionMat *)dst
+{
+    cv::hconcat([src1 mat], [src2 mat], [dst mat]);
+}
+
++ (void)vconcat:(MotionMat *)src1
+            src:(MotionMat *)src2
+            dst:(MotionMat *)dst
+{
+    cv::vconcat([src1 mat], [src2 mat], [dst mat]);
+}
+
+/*
+ * cv::bitwise_and
+ */
++ (void)bitwise_and:(MotionMat *)src1
+                src:(MotionMat *)src2
+                dst:(MotionMat *)dst
+               mask:(MotionMat *)mask/* =Mat() */
+{
+    cv::bitwise_and([src2 mat], [src2 mat], [dst mat], [mask mat]);
+}
+
++ (void)bitwise_and:(MotionMat *)src1
+                src:(MotionMat *)src2
+                dst:(MotionMat *)dst
+{
+    cv::bitwise_and([src2 mat], [src2 mat], [dst mat], cv::Mat());
+}
+
+/*
+ * cv::bitwise_not
+ */
++ (void)bitwise_not:(MotionMat *)src
+                dst:(MotionMat *)dst
+{
+    cv::bitwise_not([src mat], [dst mat]);
+}
+
+/*
+ * cv::bitwise_or
+ */
++ (void)bitwise_or:(MotionMat *)src1
+               src:(MotionMat *)src2
+               dst:(MotionMat *)dst
+              mask:(MotionMat *)mask/* =Mat() */
+{
+    cv::bitwise_or([src1 mat], [src2 mat], [dst mat], [mask mat]);
+}
+
+/*
  * cv::bitwise_xor
  */
 + (void)bitwise_xor:(MotionMat *)src1

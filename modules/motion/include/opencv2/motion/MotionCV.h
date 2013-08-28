@@ -22,7 +22,7 @@
 /*
  * OpenCV C API filters
  */
-+ (Void)canny:(MotionMat *)src
++ (void)canny:(MotionMat *)src
           dst:(MotionMat *)dst
    threshold1:(double)threshold1
    threshold2:(double)threshold2
@@ -30,6 +30,42 @@
 
 + (void)not:(MotionMat *)src
         dst:(MotionMat *)dst;
+
+/*
+ * cv::{h|v}concat
+ */
++ (void)hconcat:(MotionMat *)src1
+            src:(MotionMat *)src2
+            dst:(MotionMat *)dst;
+
++ (void)vconcat:(MotionMat *)src1
+            src:(MotionMat *)src2
+            dst:(MotionMat *)dst;
+/*
+ * cv::bitwise_and
+ */
++ (void)bitwise_and:(MotionMat *)src1
+                src:(MotionMat *)src2
+                dst:(MotionMat *)dst
+               mask:(MotionMat *)mask/*=Mat()*/;
+
++ (void)bitwise_and:(MotionMat *)src1
+                src:(MotionMat *)src2
+                dst:(MotionMat *)dst;
+
+/*
+ * cv::bitwise_not
+ */
++ (void)bitwise_not:(MotionMat *)src
+                dst:(MotionMat *)dst;
+
+/*
+ * cv::bitwise_or
+ */
++ (void)bitwise_or:(MotionMat *)src1
+               src:(MotionMat *)src2
+               dst:(MotionMat *)dst
+              mask:(MotionMat *)mask/* =Mat() */;
 
 /*
  * cv::bitwise_xor

@@ -22,6 +22,26 @@ module Cv
     end
 
     ##
+    def hconcat src1, src2, dst
+      MotionCV.hconcat(src1, src:src2, dst:dst)
+    end
+
+    def vconcat src1, src2, dst
+      MotionCV.vconcat(src1, src:src2, dst:dst)
+    end
+
+    def bitwise_and src1, src2, dst, mask=MotionMat.new
+      MotionCV.bitwise_and(src1, src:src2, dst:dst, mask:mask)
+    end
+
+    def bitwise_not src, dst
+      MotionCV.bitwise_not(src, dst:dst)
+    end
+
+    def bitwise_or src1, src2, dst, mask=MotionMat.new
+      MotionCV.bitwise_or(src1, src:src2, dst:dst, mask:mask)
+    end
+
     def bitwise_xor src1, src2, dst, mask=MotionMat.new
       MotionCV.bitwise_xor(src1, src:src2, dst:dst, mask:mask)
     end

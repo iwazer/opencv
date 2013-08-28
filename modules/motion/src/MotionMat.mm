@@ -104,4 +104,13 @@
     return sz;
 }
 
+- (MotionMat *)crop:(CGRect)rect
+{
+    cv::Mat *mat = new cv::Mat([self mat], cv::Rect(rect.origin.x,rect.origin.y,rect.size.width,rect.size.height));
+    MotionMat *croped = [[MotionMat alloc] init];
+    delete(croped->_cvMat);
+    croped->_cvMat = mat;
+    return croped;
+}
+
 @end
