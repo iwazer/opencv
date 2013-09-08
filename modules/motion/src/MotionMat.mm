@@ -10,6 +10,8 @@
 
 #import "MotionMat_p.h"
 
+#include <opencv2/core/mat.hpp>
+
 @implementation MotionMat
 
 - (id)init
@@ -30,6 +32,15 @@
     return self;
 }
 
+- (id)initWithSize:(CGSize)size bgr:(int *)bgr
+{
+    self = [super init];
+    if (self) {
+        _cvMat = new cv::Mat(cv::Size((int)size.width, (int)size.height), CV_8UC3, cv::Scalar(bgr[0], bgr[1], bgr[2]));
+    }
+    return self;
+}
+
 - (void)setMat:(cv::Mat)mat
 {
     if (_cvMat) {
@@ -41,6 +52,17 @@
 - (void)set:(MotionMat *)mm
 {
     [self setMat:[mm mat]];
+}
+
+- (void)copyTo:(MotionMat *)mat
+          mask:(MotionMat *)mask
+{
+    _cvMat->copyTo([mat mat], [mask mat]);
+}
+
+- (void)copyTo:(MotionMat *)mat
+{
+    _cvMat->copyTo([mat mat], cv::Mat());
 }
 
 - (void)setIplImage:(IplImage*)image

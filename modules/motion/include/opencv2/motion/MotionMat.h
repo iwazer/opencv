@@ -23,10 +23,18 @@ typedef struct MotionIntPoint {
 @interface MotionMat : NSObject
 
 - (id)init;
-- (id)initWithRows:(int)rows cols:(int)cols channels:(int)channels;
+- (id)initWithRows:(int)rows
+              cols:(int)cols
+          channels:(int)channels;
+- (id)initWithSize:(CGSize)size
+               bgr:(int *)bgr;
 - (void)dealloc;
 
 - (void)set:(MotionMat *)mm;
+
+- (void)copyTo:(MotionMat *)mat
+          mask:(MotionMat *)mask;
+- (void)copyTo:(MotionMat *)mat;
 
 - (unsigned char *)data;
 - (size_t)stepWithIndex:(int)index;
