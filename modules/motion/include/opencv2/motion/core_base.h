@@ -14,3 +14,9 @@ enum {
     MCV_BORDER_DEFAULT     = MCV_BORDER_REFLECT_101,
     MCV_BORDER_ISOLATED    = 16 // do not look outside of ROI
 };
+
+/*
+ * from core/core_c.h
+ */
+#define MCV_FILLED -1
+#define MCV_AA 16

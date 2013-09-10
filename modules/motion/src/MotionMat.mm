@@ -54,17 +54,6 @@
     [self setMat:[mm mat]];
 }
 
-- (void)copyTo:(MotionMat *)mat
-          mask:(MotionMat *)mask
-{
-    _cvMat->copyTo([mat mat], [mask mat]);
-}
-
-- (void)copyTo:(MotionMat *)mat
-{
-    _cvMat->copyTo([mat mat], cv::Mat());
-}
-
 - (void)setIplImage:(IplImage*)image
 {
     cv::Mat mat = cv::cvarrToMat(image);
@@ -124,6 +113,11 @@
         .height = ia.size().height
     };
     return sz;
+}
+
+- (int)channels
+{
+    return _cvMat->channels();
 }
 
 - (MotionMat *)crop:(CGRect)rect

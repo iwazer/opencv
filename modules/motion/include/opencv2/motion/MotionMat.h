@@ -32,10 +32,6 @@ typedef struct MotionIntPoint {
 
 - (void)set:(MotionMat *)mm;
 
-- (void)copyTo:(MotionMat *)mat
-          mask:(MotionMat *)mask;
-- (void)copyTo:(MotionMat *)mat;
-
 - (unsigned char *)data;
 - (size_t)stepWithIndex:(int)index;
 - (size_t)elemSize;
@@ -44,6 +40,7 @@ typedef struct MotionIntPoint {
 - (int)rows;
 - (int)cols;
 - (MotionIntSize)size;
+- (int)channels;
 
 - (MotionMat *)crop:(CGRect)rect;
 

@@ -94,6 +94,28 @@
              dst:(MotionMat *)dst;
 
 /*
+ * cv::circle
+ */
++ (void)circle:(MotionMat *)mat
+        center:(CGPoint)center
+        radius:(int)radius
+           bgr:(int *)bgr
+     thickness:(int)thickness
+      lineType:(int)lineType
+         shift:(int)shift;
+
+/*
+ * cv::rectangle
+ */
++ (void)rectangle:(MotionMat *)mat
+              pt1:(CGPoint)pt1
+              pt2:(CGPoint)pt2
+              bgr:(int *)bgr
+        thickness:(int)thickness
+         lineType:(int)lineType
+            shift:(int)shift;
+
+/*
  * cv::blur
  */
 + (void)blur:(MotionMat *)src
@@ -127,6 +149,12 @@
 + (void)resize:(MotionMat *)src
            dst:(MotionMat *)dst
          dsize:(MotionIntSize)dsize;
+
+/*
+ * cv::split
+ */
++ (void)split:(MotionMat *)mtx
+           mv:(MotionMat **)mv;
 
 /*
  * cv::cvtColor
@@ -179,6 +207,14 @@
                  dst:(MotionMat *)dst
                 size:(MotionIntSize)size
               sigmaX:(double)sigmaX;
+
+/*
+ * cv::distanceTransform
+ */
++ (void)distanceTransform:(MotionMat *)src
+                      dst:(MotionMat *)dst
+             distanceType:(int)distanceType
+                 maskSize:(int)maskSize;
 
 /*
  * cv::Canny

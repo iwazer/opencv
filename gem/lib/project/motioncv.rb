@@ -54,7 +54,18 @@ module Cv
       MotionCV.subtract(src1, src:src2, dst:dst)
     end
 
-    def blur src, dst, size, anchor, borderType
+    def circle mat, center, radius, rgb, thickness, lineType=8, shift=0
+      MotionCV.circle(mat, center:center.map(&:to_f), radius:radius.to_i,
+                      bgr:rgb2bgr(rgb),
+                      thickness:thickness, lineType:lineType, shift:shift)
+    end
+
+    def rectangle mat, pt1, pt2, rgb, thickness, lineType=8, shift=0
+      MotionCV.rectangle(mat, pt1:pt1, pt2:pt2,  bgr:rgb2bgr(rgb),
+                         thickness:thickness, lineType:lineType, shift:shift)
+    end
+
+    def blur src, dst, size, anchor=[-1,-1], borderType=MCV_BORDER_DEFAULT
       MotionCV.blur(src, dst:dst, size:size, anchor:anchor, borderType:borderType)
     end
 
@@ -64,6 +75,14 @@ module Cv
 
     def resize src, dst, dsize, fx=0, fy=0, interpolation=CV_INTER_LINEAR
       MotionCV.resize(src, dst:dst, dsize:dsize, fx:fx, fy:fy, interpolation:interpolation)
+    end
+
+    def split mtx, mv
+      _mv = Pointer.new(:object, mtx.channels)
+      MotionCV.split(mtx, mv:_mv)
+      mtx.channels.times do |i|
+        mv << _mv[i]
+      end
     end
 
     def cvtColor src, dst, code, dcn=0
@@ -84,9 +103,19 @@ module Cv
                             borderType:borderType)
     end
 
+    def distanceTransform src, dst, distanceType, maskSize
+      MotionCV.distanceTransform(src, dst:dst, distanceType:distanceType, maskSize:maskSize)
+    end
+
     def Canny src, dst, threshold1, threshold2, apertureSize=3, l2gradient=false
       MotionCV.Canny(src, dst:dst, threshold1:threshold1, threshold2:threshold2,
                      apertureSize:apertureSize, l2gradient:l2gradient)
+    end
+
+    def rgb2bgr rgb
+      bgr = Pointer.new(:int, 3)
+      rgb.reverse.each_with_index{|v,i| bgr[i] = v}
+      bgr
     end
   end
 end
