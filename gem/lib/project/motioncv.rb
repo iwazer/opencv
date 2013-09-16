@@ -117,5 +117,10 @@ module Cv
       rgb.reverse.each_with_index{|v,i| bgr[i] = v}
       bgr
     end
+
+    def findContours src, contours, mode, method, offset=[0,0]
+      MotionCV.findContours(src, contours: contours, mode: mode, method: method, offset: offset)
+    end
+
   end
 end
