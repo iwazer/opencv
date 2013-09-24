@@ -9,7 +9,7 @@ module Cv
     end
 
     def UIImageFromMotionMat mat
-      MotionCV.MotionMatFromUIImage(mat)
+      MotionCV.UIImageFromMotionMat(mat)
     end
 
     ##
