@@ -11,7 +11,10 @@ Motion::Project::App.setup do |app|
                        'Versions/A/Headers/imgproc/imgproc_c.h',
                        'Versions/A/Headers/imgproc/types_c.h',
                        'Versions/A/Headers/motion/core_base.h',
-                       'Versions/A/Headers/motion/MotionCV.h',
+                       'Versions/A/Headers/motion/MotionCV_core.h',
+                       'Versions/A/Headers/motion/MotionCV_imgproc.h',
+                       'Versions/A/Headers/motion/MotionCV_capi.h',
+                       'Versions/A/Headers/motion/MotionCV_helper.h',
                        'Versions/A/Headers/motion/MotionMat.h'
                     ],
     :products    => ['opencv2'],
