@@ -237,4 +237,13 @@
     threshold1:(double)threshold1
     threshold2:(double)threshold2;
 
+/*
+ * cv::findContours
+ */
++ (void) findContours:(MotionMat *)src
+             contours:(NSMutableArray *)contours
+                 mode:(int)mode
+               method:(int)method
+               offset:(MotionIntPoint)offset;
+
 @end
