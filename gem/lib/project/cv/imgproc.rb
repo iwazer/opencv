@@ -14,14 +14,6 @@ module Cv
                               dsize:dsize, fx:fx, fy:fy, interpolation:interpolation)
     end
 
-    def split mtx, mv
-      _mv = Pointer.new(:object, mtx.channels)
-      MotionCV_imgproc.split(mtx, mv:_mv)
-      mtx.channels.times do |i|
-        mv << _mv[i]
-      end
-    end
-
     def cvtColor src, dst, code, dcn=0
       MotionCV_imgproc.cvtColor(src, dst:dst, code:code, dcn:dcn)
     end

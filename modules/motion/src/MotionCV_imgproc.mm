@@ -64,21 +64,6 @@
     [self resize:src dst:dst dsize:dsize fx:0 fy:0];
 }
 
-/*
- * cv::split
- */
-+ (void)split:(MotionMat *)mtx
-           mv:(MotionMat **)mv
-{
-    std::vector<cv::Mat> vec;
-    cv::split([mtx mat], vec);
-    for (int i=0; i<vec.size(); i++) {
-        MotionMat *mat = [[MotionMat alloc] init];
-        [mat setMat:vec.at(i)];
-        mv[i] = mat;
-    }
-}
-
 + (void)cvtColor:(MotionMat *)src
              dst:(MotionMat *)dst
             code:(int)code

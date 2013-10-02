@@ -98,6 +98,21 @@
 }
 
 /*
+ * cv::split
+ */
++ (void)split:(MotionMat *)mtx
+           mv:(MotionMat **)mv
+{
+    std::vector<cv::Mat> vec;
+    cv::split([mtx mat], vec);
+    for (int i=0; i<vec.size(); i++) {
+        MotionMat *mat = [[MotionMat alloc] init];
+        [mat setMat:vec.at(i)];
+        mv[i] = mat;
+    }
+}
+
+/*
  * cv::subtract
  */
 + (void)subtract:(MotionMat *)src1

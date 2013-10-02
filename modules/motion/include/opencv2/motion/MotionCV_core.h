@@ -69,6 +69,12 @@
         dst:(MotionMat *)dst;
 
 /*
+ * cv::split
+ */
++ (void)split:(MotionMat *)mtx
+           mv:(MotionMat **)mv;
+
+/*
  * cv::subtract
  */
 + (void)subtract:(MotionMat *)src1

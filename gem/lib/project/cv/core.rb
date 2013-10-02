@@ -28,6 +28,14 @@ module Cv
       MotionCV_core.min(src1, src:src2, dst:dst)
     end
 
+    def split mtx, mv
+      _mv = Pointer.new(:object, mtx.channels)
+      MotionCV_core.split(mtx, mv:_mv)
+      mtx.channels.times do |i|
+        mv << _mv[i]
+      end
+    end
+
     def subtract src1, src2, dst
       MotionCV_core.subtract(src1, src:src2, dst:dst)
     end

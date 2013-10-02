@@ -49,12 +49,6 @@
          dsize:(MotionIntSize)dsize;
 
 /*
- * cv::split
- */
-+ (void)split:(MotionMat *)mtx
-           mv:(MotionMat **)mv;
-
-/*
  * cv::cvtColor
  */
 + (void)cvtColor:(MotionMat *)src
