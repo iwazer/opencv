@@ -1,11 +1,13 @@
 module Cv
   module Helper
+    MotionCV = MotionCV_helper
+
     def MotionMatFromUIImage image
-      MotionCV_helper.MotionMatFromUIImage(image)
+      MotionCV.MotionMatFromUIImage(image)
     end
 
     def UIImageFromMotionMat mat
-      MotionCV_helper.UIImageFromMotionMat(mat)
+      MotionCV.UIImageFromMotionMat(mat)
     end
   end
 
