@@ -15,6 +15,11 @@
 @implementation MotionCV_core
 
 /*
+ * ===================================================================
+ * Undocumented...
+ */
+
+/*
  * cv::{h|v}concat
  */
 + (void)hconcat:(MotionMat *)src1
@@ -30,6 +35,18 @@
 {
     cv::vconcat([src1 mat], [src2 mat], [dst mat]);
 }
+
+/*
+ * ===================================================================
+ * Basic Structures
+ */
+
+// still nonimplement...
+
+/*
+ * ===================================================================
+ * Operations on Arrays
+ */
 
 /*
  * cv::bitwise_and
@@ -123,6 +140,11 @@
 }
 
 /*
+ * ===================================================================
+ * Drawing Functions
+ */
+
+/*
  * cv::circle
  */
 + (void)circle:(MotionMat *)mat
@@ -159,5 +181,12 @@
                   lineType,
                   shift);
 }
+
+/*
+ * ===================================================================
+ * Clustering
+ */
+
+// still nonimplement...
 
 @end

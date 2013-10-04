@@ -14,6 +14,11 @@
 @interface MotionCV_core : NSObject
 
 /*
+ * ===================================================================
+ * Undocumented...
+ */
+
+/*
  * cv::{h|v}concat
  */
 + (void)hconcat:(MotionMat *)src1
@@ -23,6 +28,20 @@
 + (void)vconcat:(MotionMat *)src1
             src:(MotionMat *)src2
             dst:(MotionMat *)dst;
+
+
+/*
+ * ===================================================================
+ * Basic Structures
+ */
+
+// still nonimplement...
+
+/*
+ * ===================================================================
+ * Operations on Arrays
+ */
+
 /*
  * cv::bitwise_and
  */
@@ -82,6 +101,11 @@
              dst:(MotionMat *)dst;
 
 /*
+ * ===================================================================
+ * Drawing Functions
+ */
+
+/*
  * cv::circle
  */
 + (void)circle:(MotionMat *)mat
@@ -102,5 +126,12 @@
         thickness:(int)thickness
          lineType:(int)lineType
             shift:(int)shift;
+
+/*
+ * ===================================================================
+ * Clustering
+ */
+
+// still nonimplement...
 
 @end
