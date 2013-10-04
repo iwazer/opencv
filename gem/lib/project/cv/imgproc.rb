@@ -42,6 +42,10 @@ module Cv
                                  thresh:thresh, maxVal:maxVal, thresholdType:thresholdType)
     end
 
+    def findContours src, contours, mode, method, offset=[0,0]
+      MotionCV.findContours(src, contours: contours, mode: mode, method: method, offset: offset)
+    end
+
     def Canny src, dst, threshold1, threshold2, apertureSize=3, l2gradient=false
       MotionCV.Canny(src, dst:dst,
                              threshold1:threshold1, threshold2:threshold2,

@@ -162,7 +162,34 @@
  * Structural Analysis and Shape Descriptors
  */
 
-// still nonimplement...
+/*
+ * cv::findContours
+ */
++ (void) findContours:(MotionMat *)src
+             contours:(NSMutableArray *)contoursArray
+                 mode:(int)mode
+               method:(int)method
+               offset:(MotionIntPoint)offset
+{
+    std::vector<std::vector<cv::Point> > contours;
+    cv::findContours([src mat], contours, mode, method, cv::Point(offset.x, offset.y));
+
+    for (int i = 0; i < contours.size(); i++ ) {
+
+        std::vector<cv::Point> contour = contours[i];
+        UIBezierPath *path = [UIBezierPath bezierPath];
+        for (int j = 0; j < contour.size(); j++) {
+            cv::Point cvPoint = contour[j];
+            CGPoint point = CGPointMake(cvPoint.x, cvPoint.y);
+            if (j == 0) {
+                [path moveToPoint:point];
+            } else {
+                [path addLineToPoint:point];
+            }
+        }
+        [contoursArray addObject:path];
+    }
+}
 
 /*
  * ===================================================================

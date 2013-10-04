@@ -133,7 +133,14 @@
  * Structural Analysis and Shape Descriptors
  */
 
-// still nonimplement...
+/*
+ * cv::findContours
+ */
++ (void) findContours:(MotionMat *)src
+             contours:(NSMutableArray *)contours
+                 mode:(int)mode
+               method:(int)method
+               offset:(MotionIntPoint)offset;
 
 /*
  * ===================================================================
