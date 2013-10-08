@@ -1,5 +1,7 @@
 module Cv
   module Helper
+    MotionCV = MotionCV_helper
+
     def MotionMatFromUIImage image
       MotionCV.MotionMatFromUIImage(image)
     end

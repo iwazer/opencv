@@ -4,8 +4,11 @@
 
 module Cv
   module Capi
+    MotionCV = MotionCV_capi
+
     def canny src, dst, threshold1, threshold2, aperture_size
-      MotionCV.canny(src, dst:dst, threshold1:threshold1, threshold2:threshold2, size:aperture_size)
+      MotionCV.canny(src, dst:dst,
+                          threshold1:threshold1, threshold2:threshold2, size:aperture_size)
     end
 
     def not src, dst
