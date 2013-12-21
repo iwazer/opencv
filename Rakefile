@@ -1,3 +1,4 @@
+task "default" => "build"
 desc "Build OpenCV framework & motioncv gem\n(ex: rake build:framework <target={onlysim|all}>)"
 task :build => [:"build:framework", :"build:gem"]
 desc "Clear OpenCV framework & motioncv gem build objects"
