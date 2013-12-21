@@ -28,7 +28,6 @@ typedef struct MotionIntPoint {
           channels:(int)channels;
 - (id)initWithSize:(CGSize)size
                bgr:(int *)bgr;
-- (void)dealloc;
 
 - (void)set:(MotionMat *)mm;
 

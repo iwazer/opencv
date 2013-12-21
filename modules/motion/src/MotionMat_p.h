@@ -3,7 +3,7 @@
 
 @interface MotionMat ()
 {
-    cv::Mat *_cvMat;
+    cv::Mat _cvMat;
 }
 
 - (cv::Mat&)mat;
